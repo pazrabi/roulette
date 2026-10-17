@@ -33,6 +33,9 @@ async def run(w):
         await p.tap("#wd-prev-try")
         check(code + ": кнопка стала «Стоп»", await p.ev("document.getElementById('wd-prev-try').textContent"), "Стоп")
         await p.wait(cond, 8, code + ": образец двигается")
+        if code == "crash_neon":
+            check("краш: на примерке разметка как в игре (картинки образца поверх сцены нет), линия растёт",
+                  await p.ev("document.querySelectorAll('#wd-prev-scene .cr-chart svg rect, #wd-prev-scene .cr-chart svg defs').length === 0 && document.querySelectorAll('#wd-prev-scene .cr-chart .cr-curve').length === 1 && document.querySelector('#wd-prev-scene .cr-curve').getAttribute('d').length > 20"), True)
         await p.tap("#wd-prev-try")
         check(code + ": после «Стоп» образец собран заново", (await p.ev(cond), await p.ev("document.getElementById('wd-prev-try').textContent")), (False, "Примерить"))
         await p.tap("#wd-prev-try")

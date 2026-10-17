@@ -98,7 +98,7 @@ function wdTryScript(scene, item, emit) {
     wdTryAt(4200 + balls.length * 1500, () => emit('keno:end', { hits: 1, picks: balls.length }));
   } else if (item.slot === 'crash') {
     const chart = scene.querySelector('.cr-chart');
-    const curves = Array.from(scene.querySelectorAll('path')).filter((e) => (e.getAttribute('d') || '').startsWith('M0 149L'));      // линия образца (у части скинов их две: след и линия)
+    const curves = Array.from(scene.querySelectorAll('.cr-curve, .cr-smoke'));      // линия и дымный след, как в игре (разметка графика собрана в wdTryToggle)
     if (!chart) return;
     const readout = document.createElement('div');
     readout.className = 'cr-readout';
@@ -109,7 +109,6 @@ function wdTryScript(scene, item, emit) {
     const RISE_MS = 7600;                                   // раунд со всеми зонами: до ×2 серая, до ×10 янтарная, выше золотая
     const TOP = 60;
     chart.setAttribute('data-tone', 'idle');
-    curves.slice(0, 1).forEach((c) => c.classList.add('cr-curve'));      // как в игре: сцены находят линию по этому классу
     const FLIGHT_AT = 700;
     const ROUND = 1;
     let prev = { x: 0, y: 149 };
@@ -162,6 +161,11 @@ async function wdTryToggle() {
   wdTryButtonSync();
   // скин со сценой или css: модуль и стили подключаются на образец (со своей шиной событий), как в игре
   const code = item.code;
+  if (item.slot === 'crash') {
+    const chart = scene.querySelector('.cr-chart');
+    // в игре фон скина рисует сцена, а в svg только оси и линия: статичная картинка образца закрывала бы живую сцену, поэтому на время примерки разметка как в игре
+    if (chart) chart.innerHTML = '<svg class="cr-svg" viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true"><path class="cr-axis" d="M0 149H300M1 0V150"/><path class="cr-smoke" d="M0 149"/><path class="cr-curve" d="M0 149"/></svg>';
+  }
   if (SKIN_FILES[code]) {
     await skinPreviewReady(code);
     if (wdTry !== run) return;                              // остановили или закрыли, пока грузился модуль
