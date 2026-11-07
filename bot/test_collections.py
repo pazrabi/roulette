@@ -95,7 +95,7 @@ try:
     check("описание выданной части: коллекция и названия", db.claim_streak(B, now=moscow_noon(0), db_path=path)["collection_part"], None)
     owned = sql(path, "SELECT item_code, source FROM cosmetic_items WHERE telegram_id = ? ORDER BY item_code", (A,))
     check("предметы у игрока с источником collection", owned, [("back_leaves", "collection"), ("mine_acorn", "collection"), ("table_autumn", "collection")])
-    mine = db.cosmetics_mine(A, db_path=path)
+    mine = db.cosmetics_mine(A, now=moscow_noon(6), db_path=path)      # на дату выдачи, а не на сегодня: порядок карточек зависит от сезона
     check("в /mine прогресс: за неделю три части из всех", [(c["code"], c["owned"], c["total"], c["complete"]) for c in mine["collections"]], [("leaves", 3, N, False), ("dacha", 0, 8, False), ("founder", 0, 3, False)])
     r = db.claim_streak(A, now=moscow_noon(6) + 60, db_path=path)
     check("повтор сбора в тот же день: части заново нет", (r["replayed"], r["collection_part"]), (True, None))

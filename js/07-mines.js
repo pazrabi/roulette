@@ -478,6 +478,7 @@ function setMinesCount(n) {
 }
 
 minesEls.begin.addEventListener('click', minesStart);
+minesEls.form.addEventListener('submit', (e) => e.preventDefault());      // Enter в поле не перезагружает страницу (inline onsubmit запрещён CSP)
 minesEls.cash.addEventListener('click', minesCashout);
 minesEls.again.addEventListener('click', () => {
   mn.view = 'start';

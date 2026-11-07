@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#050506">
   <!-- CSP: только свои скрипты и стили, скрипт Telegram, запросы к серверу игры; inline-скриптов и стилей нет. Адрес сервера меняй вместе с API_URL (js/00-config.js) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://telegram.org; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src https://roulette-production-4b93.up.railway.app; frame-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://telegram.org; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src https://casino.193-41-86-92.sslip.io; frame-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
   <title>Депная</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="css/00-fonts-tokens.css?v=c30e2ac9">
@@ -270,7 +270,7 @@
     <small class="profile-code" id="mines-code"></small>
     <button type="button" class="action profile-retry" id="mines-retry" hidden>Повторить</button>
 
-    <form class="mines-start" id="mines-start" hidden onsubmit="return false">
+    <form class="mines-start" id="mines-start" hidden>
       <section class="mines-card mines-bets bets-dock">
         <label class="mines-label" for="mines-bet">Ставка</label>
         <div class="row bet-chips">
@@ -803,7 +803,7 @@
   </div>
   <nav class="nav" id="nav" aria-label="Разделы"></nav>
   </div>
-  <script src="js/00-config.js?v=fe03424e"></script>
+  <script src="js/00-config.js?v=2ef69880"></script>
   <script src="js/01-core.js?v=7ad4645b"></script>
   <script src="js/01a-skin-runtime.js?v=b0d03932"></script>
   <script src="js/01b-result.js?v=c36f4dc6"></script>
@@ -814,7 +814,7 @@
   <script src="js/04-profile.js?v=d796b8b3"></script>
   <script src="js/05-rating.js?v=6137d82c"></script>
   <script src="js/06-farm.js?v=66dd1fc0"></script>
-  <script src="js/07-mines.js?v=c7715e5b"></script>
+  <script src="js/07-mines.js?v=db5555ab"></script>
   <script src="js/08-keno.js?v=b1f78dfe"></script>
   <script src="js/09-blackjack.js?v=f73793d9"></script>
   <script src="js/10a-crash-chart.js?v=1ffdd634"></script>

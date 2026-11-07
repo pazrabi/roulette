@@ -307,7 +307,7 @@ class Page:
 
     def _problem(self, kind, text):
         if not any(re.search(pat, text) for pat in self.allowed):
-            self.problems.append("%s: %s" % (kind, text[:300]))
+            self.problems.append("%s: %s" % (kind, text[:300] + (" ..." + text[-150:] if len(text) > 300 else "")))
 
     async def send(self, method, params=None):
         self.n += 1
